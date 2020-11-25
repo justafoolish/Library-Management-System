@@ -254,15 +254,16 @@ public class Program {
     /* -----------------------Menu con---------------------- */
 
     //Menu dành cho Adult User:
-    public static void adultMenu(Adult adultmember) {
+    public static void adultMenu(Adult adultMember) {
         Scanner sc = new Scanner(System.in);
         boolean running = true;
         while(running) {
             System.out.println("---------------------------------------\n" +
                     "|          Menu                       |\n" +
                     "|1. Thêm sách vào thẻ mượn cá nhân    |\n" +
-                    "|2. Thanh toán phí duy trì tài khoản  |\n" +
-                    "|3. Hiển thị thông tin tài khoản      |\n" +
+                    "|2. Trả sách đã mượn                  |\n" +
+                    "|3. Thanh toán phí duy trì tài khoản  |\n" +
+                    "|4. Hiển thị thông tin tài khoản      |\n" +
                     "|0. Thoát                             |\n" +
                     "---------------------------------------\n");
             int choice;
@@ -272,25 +273,37 @@ public class Program {
                     break;
                 switch (choice) {
                     case 1:
-                        if(adultmember.getMonthlyPayment())
-                            adultmember.addBook(librarian.getLibrarian());
+                        if(adultMember.getMonthlyPayment())
+                            adultMember.addBook(librarian.getLibrarian());
                         else
                             System.out.println("Vui lòng thanh toán phí duy trì.");
                         break;
+
                     case 2:
+                        System.out.println("Nhập mã sách cần trả: ");
+                        String bookID = sc.nextLine();
+                        adultMember.returnBook(bookID);
+                        for(Book b : librarian.getLibrarian()) {
+                            if(bookID.equals(b.getBookID()))
+                                b.setQuantity(b.getQuantity()+1);
+                        }
+                        break;
+
+                    case 3:
                         System.out.print("Tiến hành nạp phí duy trì tài khoản (50.0000): ");
                         int pay = sc.nextInt();
                         if(pay == 50000) {
-                            adultmember.setMonthlyPayment(true);
+                            adultMember.setMonthlyPayment(true);
                             System.out.println("Thanh toán thành công.");
                         }
                         else
                             System.out.println("Thất bại.");
                         break;
-                    case 3:
 
-                        System.out.println(adultmember.printInfo());
-                        adultmember.printListBook();
+                    case 4:
+
+                        System.out.println(adultMember.printInfo());
+                        adultMember.printListBook();
                         break;
                     default:
                         System.out.println("Lựa chọn không hợp lệ.");
@@ -303,15 +316,16 @@ public class Program {
     }
 
     //Menu dành cho Kid User
-    public static void kidMenu(Kid kmember) {
+    public static void kidMenu(Kid kidMember) {
         Scanner sc = new Scanner(System.in);
         boolean running = true;
         while(running) {
             System.out.println("---------------------------------------\n" +
                                "|          Menu                       |\n" +
                                "|1. Thêm sách vào thẻ mượn cá nhân    |\n" +
-                               "|2. Sử dụng máy tính                  |\n" +
-                               "|3. Hiển thị thông tin mượn sách      |\n" +
+                               "|2. Trả sách đã mượn                  |\n" +
+                               "|3. Sử dụng máy tính                  |\n" +
+                               "|4. Hiển thị thông tin mượn sách      |\n" +
                                "|0. Thoát                             |\n" +
                                "---------------------------------------\n");
             int choice;
@@ -323,15 +337,24 @@ public class Program {
                 }
                 switch (choice) {
                     case 1:
-                        kmember.addBook(librarian.getLibrarian());
+                        kidMember.addBook(librarian.getLibrarian());
                         break;
                     case 2:
-                        System.out.println("Bạn có 1 giờ sử dụng phòng máy");
-                        kmember.setComputerUsingcounttime();
+                        System.out.println("Nhập mã sách cần trả: ");
+                        String bookID = sc.nextLine();
+                        kidMember.returnBook(bookID);
+                        for(Book b : librarian.getLibrarian()) {
+                            if(bookID.equals(b.getBookID()))
+                                b.setQuantity(b.getQuantity()+1);
+                        }
                         break;
                     case 3:
-                        System.out.println(kmember.printInfo());
-                        kmember.printListBook();
+                        System.out.println("Bạn có 1 giờ sử dụng phòng máy");
+                        kidMember.setComputerUsingcounttime();
+                        break;
+                    case 4:
+                        System.out.println(kidMember.printInfo());
+                        kidMember.printListBook();
                         break;
                     default:
                         System.out.println("Lựa chọn không hợp lệ.");

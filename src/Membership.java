@@ -61,10 +61,17 @@ public abstract class Membership {
 
         boolean flag = false;
         for(Book b : books) {
-            if(bookID.equals(b.getBookID())) {
+            if(bookID.equals(b.getBookID()) && b.getQuantity() > 0) {
                 bookLending.listbook(b);
                 flag = true;
                 System.out.println("Thêm sách thành công.");
+                b.setQuantity(b.getQuantity()-1);
+                break;
+            }
+            if(b.getQuantity() == 0) {
+                System.out.println("Sách hiện đã hết.");
+                flag = true;
+                break;
             }
         }
         if(flag == false)
@@ -83,12 +90,12 @@ public abstract class Membership {
     }
 
     //Xóa sách khỏi thẻ mượn trong tài khoản:
-    public void deleteBook(String code) {
+    public void returnBook(String code) {
         boolean flag = false;
         for(Book b : bookLending.getBooks()) {
             if(b.getBookID().equals(code)) {
                 bookLending.deleteBook(b);
-                System.out.println("Xóa thành công sách ra khỏi thẻ mượn");
+                System.out.println("Trả sách thành công.");
                 flag = true;
             }
         }
