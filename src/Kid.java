@@ -1,3 +1,6 @@
+import java.io.File;
+import java.io.FileWriter;
+
 public class Kid extends Membership {
     int computerUsingcounttime;
 
@@ -25,5 +28,33 @@ public class Kid extends Membership {
                     + "\nThời gian sử dụng máy tính còn lại: "
                     +getComputerUsingcounttime();
         return s;
+    }
+    //Lưu chi tiết thẻ mượn vào file
+    public void writeFILE() {
+        try {
+            String filname = getUsername()+".kid";
+            File f = new File(filname);
+            FileWriter fr = new FileWriter(f);
+
+            fr.write(getName() + "\t|\t" +
+                    getUsername() + "\t|\t" +
+                    getAge() + "\t|\t" +
+                    getAddress() + "\t|\t" +
+                    getComputerUsingcounttime() + "\n");
+
+
+            for(Book book : getBookLending().getBooks()) {
+                fr.write(book.getBookID() + "\t|\t" +
+                        book.getTitle() + "\t|\t" +
+                        book.getAuthor() + "\t|\t" +
+                        book.getPrice() + "\n");
+            }
+
+            System.out.println("Lưu thành công vào " + filname);
+            fr.close();
+
+        } catch (Exception e) {
+            System.out.println("FILE ERROR!");
+        }
     }
 }

@@ -1,9 +1,9 @@
 110|	CTDL|	Mr.Sang|	45000.0|	4
 112|	Web Dev|	Mrs.Loan|	43000.0|	3
-3321|	English1|	mrs|	21000.0|	2
+931|	English1|	mrs|	21000.0|	2
 213|	OOP|	Mr.Đăng|	32000.0|	2
-1231|	Quốc phòng an ninh|	Mr.Hùng|	31000.0|	2
-34|	Hệ điều hành|	Mr.|	32000.0|	2
+191|	Quốc phòng an ninh|	Mr.Hùng|	31000.0|	2
+343|	Hệ điều hành|	Mr.|	32000.0|	2
 239|	C/C++|	Mr.Quốc|	21000.0|	4
 324|	Java|	Mr.Đăng|	40500.0|	2
 293|	SQL Server|	Mrs.Nhi|	43000.0|	3

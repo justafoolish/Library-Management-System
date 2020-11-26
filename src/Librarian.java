@@ -119,7 +119,7 @@ public class Librarian implements iBooks{
             System.out.println("Kho sách đang trống.");
        else {
             try {
-                File f = new File("BookList.txt");
+                File f = new File("outputList.txt");
                 FileWriter fr = new FileWriter(f);
                 for (Book books : librarian) {
 
@@ -144,7 +144,7 @@ public class Librarian implements iBooks{
     //Nhập file danh sách các Sách từ file
     public void readFILE() throws IOException {
         try {
-            File f = new File("BookList.txt");
+            File f = new File("inputList.txt");
             FileReader fr = new FileReader(f);
             BufferedReader br = new BufferedReader(fr);
             String s;

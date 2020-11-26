@@ -37,6 +37,7 @@ public class Book {
         return bookID;
     }
 
+    //In thông tin sách
     @Override
     public String toString() {
         String s = bookID + "|\t" + title + "|\t" + author + "|\t" + price + "|\t" + quantity;

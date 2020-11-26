@@ -7,15 +7,22 @@ public abstract class Membership {
     private String name;
     private int age;
     private String address;
-    private BookLendingCart bookLending = new BookLendingCart();
+    private BookLendingCart bookLending;
 
-    public Membership() {}
+    public Membership() {
+        this.bookLending  = new BookLendingCart();
+    }
 
     public Membership(String username, String name, int age, String address) {
         this.username = username;
         this.name = name;
         this.age = age;
         this.address = address;
+        this.bookLending  = new BookLendingCart();
+    }
+
+    public BookLendingCart getBookLending() {
+        return bookLending;
     }
 
     public String getUsername() {
@@ -107,5 +114,9 @@ public abstract class Membership {
 
     //Hiển thị thông tin tài khoản
     public abstract String printInfo();
+
+
+    //In phiếu mượn
+    public abstract void writeFILE();
 
 }

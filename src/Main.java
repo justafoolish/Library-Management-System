@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class Program {
+public class Main {
     private static Librarian librarian = new Librarian();
     private static List<Kid> kidMember = new ArrayList<>();
     private static List<Adult> adultMember = new ArrayList<>();
@@ -58,7 +58,7 @@ public class Program {
                     "|2. Trẻ em.              |\n" +
                     "|0. Exit                 |\n" +
                     "--------------------------\n");
-            System.out.println("Nhập lựa chọn: ");
+            System.out.print("Nhập lựa chọn: ");
             try {
                 int choice = sc.nextInt();
                 sc.nextLine();
@@ -71,10 +71,11 @@ public class Program {
                 String address;
                 int age;
 
+
+                System.out.print("Tên tài khoản thư viện: ");
+                username = sc.nextLine();
                 System.out.print("Họ và tên: ");
                 name = sc.nextLine();
-                System.out.print("Tên tài khoản thư viện: ");
-                username = sc.nextLine();;
                 System.out.print("Tuổi: ");
                 age = sc.nextInt();
                 sc.nextLine();
@@ -85,23 +86,47 @@ public class Program {
                     case 0:
                         running = false;
                         break;
+
                     case 1:
                         //Tạo tài khoản người lớn
-
-                        Adult adult = new Adult(username,name,age,address);
-                        adultMember.add(adult);
-                        System.out.println("Đăng ký thành công!");
-
+                        //Sử dụng đa hình
+                        boolean membercheck = false;
+                        for(Membership member : adultMember) {
+                            if (member.getUsername().equals(username)) {
+                                membercheck = true;
+                                break;
+                            }
+                        }
+                        if (membercheck == false) {
+                            Adult adult = new Adult(username,name,age,address);
+                            adultMember.add(adult);
+                            System.out.println("Đăng ký thành công!");
+                        }
+                        else {
+                            System.out.println("Tài khoản đã tồn tại.");
+                        }
                         break;
 
                     case 2:
                         //Tạo tài khoản cho trẻ em
-
-                        Kid kid = new Kid(username,name,age,address);
-                        kidMember.add(kid);
-                        System.out.println("Đăng ký thành công!");
-
+                        //Sử dụng đa hình kiểm. Kiểm tra tài khoản đã tồn tại
+                        boolean memberCheck2 = false;
+                        for(Membership member : kidMember) {
+                            if (member.getUsername().equals(username)) {
+                                memberCheck2 = true;
+                                break;
+                            }
+                        }
+                        if(memberCheck2 == false) {
+                            Kid kid = new Kid(username,name,age,address);
+                            kidMember.add(kid);
+                            System.out.println("Đăng ký thành công!");
+                        }
+                        else  {
+                            System.out.println("Tài khoản đã tồn tại.");
+                        }
                         break;
+
                     default:
                         System.out.println("Lựa chọn không hợp lệ");
                         break;
@@ -142,10 +167,13 @@ public class Program {
                     case 0:
                         running = false;
                         break;
+
                     case 1: librarian.printList();
                         break;
+
                     case 2: librarian.createBookList();
                         break;
+
                     case 3:
                         System.out.print("Nhập mã sách cần tìm: ");
                         keySearch = sc.nextLine();
@@ -156,22 +184,27 @@ public class Program {
                             System.out.println("Tìm thấy sách ở vị trí: " +search);
                         }
                         break;
+
                     case 4:
                         System.out.print("Nhập mã sách: ");
                         keySearch = sc.nextLine();
                         librarian.updatePrice(keySearch);
                         break;
+
                     case 5:
                         System.out.print("Nhập mã sách: ");
                         keySearch = sc.nextLine();
                         librarian.deleteBook(keySearch);
                         break;
+
                     case 6:
                         librarian.outputFILE();
                         break;
+
                     case 7:
                         librarian.readFILE();
                         break;
+
                     default:
                         System.out.println("Lựa chọn không hợp lệ.");
                 }
@@ -223,6 +256,7 @@ public class Program {
                         if(flag1 == false)
                             System.out.println("Không tìm thấy tài khoản.");
                         break;
+
                     case 2:
                         boolean flag2 = false;
                         for (Kid member : kidMember) {
@@ -236,6 +270,7 @@ public class Program {
                         if(flag2 == false)
                             System.out.println("Không tìm thấy tài khoản.");
                         break;
+
                     default:
                         System.out.println("Lựa chọn không hợp lệ.");
                         break;
@@ -259,14 +294,16 @@ public class Program {
         boolean running = true;
         while(running) {
             System.out.println("---------------------------------------\n" +
-                    "|          Menu                       |\n" +
+                    "|          Menu for Kid User          |\n" +
                     "|1. Thêm sách vào thẻ mượn cá nhân    |\n" +
                     "|2. Trả sách đã mượn                  |\n" +
                     "|3. Thanh toán phí duy trì tài khoản  |\n" +
                     "|4. Hiển thị thông tin tài khoản      |\n" +
+                    "|5. In chi tiết thẻ mượn              |\n" +
                     "|0. Thoát                             |\n" +
                     "---------------------------------------\n");
             int choice;
+            System.out.print("Lựa chọn: ");
             try {
                 choice = sc.nextInt();
                 if(choice == 0)
@@ -301,10 +338,14 @@ public class Program {
                         break;
 
                     case 4:
-
                         System.out.println(adultMember.printInfo());
                         adultMember.printListBook();
                         break;
+
+                    case 5:
+                        adultMember.writeFILE();
+                        break;
+
                     default:
                         System.out.println("Lựa chọn không hợp lệ.");
                         break;
@@ -321,14 +362,16 @@ public class Program {
         boolean running = true;
         while(running) {
             System.out.println("---------------------------------------\n" +
-                               "|          Menu                       |\n" +
+                               "|          Menu For Adult User        |\n" +
                                "|1. Thêm sách vào thẻ mượn cá nhân    |\n" +
                                "|2. Trả sách đã mượn                  |\n" +
                                "|3. Sử dụng máy tính                  |\n" +
                                "|4. Hiển thị thông tin mượn sách      |\n" +
+                               "|5. In chi tiết thẻ mượn              |\n" +
                                "|0. Thoát                             |\n" +
                                "---------------------------------------\n");
             int choice;
+            System.out.print("Lựa chọn: ");
             try {
                 choice = sc.nextInt();
                 if(choice == 0) {
@@ -339,6 +382,7 @@ public class Program {
                     case 1:
                         kidMember.addBook(librarian.getLibrarian());
                         break;
+
                     case 2:
                         System.out.println("Nhập mã sách cần trả: ");
                         String bookID = sc.nextLine();
@@ -348,14 +392,21 @@ public class Program {
                                 b.setQuantity(b.getQuantity()+1);
                         }
                         break;
+
                     case 3:
                         System.out.println("Bạn có 1 giờ sử dụng phòng máy");
                         kidMember.setComputerUsingcounttime();
                         break;
+
                     case 4:
                         System.out.println(kidMember.printInfo());
                         kidMember.printListBook();
                         break;
+
+                    case 5:
+                        kidMember.writeFILE();
+                        break;
+
                     default:
                         System.out.println("Lựa chọn không hợp lệ.");
                         break;

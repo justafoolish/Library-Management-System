@@ -1,3 +1,6 @@
+import java.io.File;
+import java.io.FileWriter;
+
 public class Adult extends Membership {
     boolean monthlyPayment;
 
@@ -29,6 +32,33 @@ public class Adult extends Membership {
 
     public boolean getMonthlyPayment() {
         return monthlyPayment;
+    }
+
+    //Lưu chi tiết thẻ mượn vào file
+    public void writeFILE() {
+        try {
+            String filename = getUsername() + ".adult";
+            File f = new File(filename);
+            FileWriter fr = new FileWriter(f);
+
+            fr.write(getName() + "\t|\t" +
+                    getUsername() + "\t|\t" +
+                    getAge() + "\t|\t" + getAddress()
+                    + "\t|\t" +
+                    getMonthlyPayment() +
+                    "\n");
+            for(Book book : getBookLending().getBooks()) {
+                fr.write(book.getBookID() + "\t|\t" +
+                        book.getTitle() + "\t|\t" +
+                        book.getAuthor() + "\t|\t" +
+                        book.getPrice() + "\n");
+            }
+
+            System.out.println("Lưu thành công vào " + filename);
+            fr.close();
+        } catch (Exception e) {
+            System.out.println("FILE ERROR!");
+        }
     }
 
 
