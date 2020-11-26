@@ -3,10 +3,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class BookLendingCart {
+public class BookLendingCard {
     private List<Book> books = new ArrayList<>();
 
-    public BookLendingCart() {}
+    public BookLendingCard() {}
 
     public List<Book> getBooks() {
         return books;

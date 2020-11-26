@@ -7,10 +7,10 @@ public abstract class Membership {
     private String name;
     private int age;
     private String address;
-    private BookLendingCart bookLending;
+    private BookLendingCard bookLending;
 
     public Membership() {
-        this.bookLending  = new BookLendingCart();
+        this.bookLending  = new BookLendingCard();
     }
 
     public Membership(String username, String name, int age, String address) {
@@ -18,10 +18,10 @@ public abstract class Membership {
         this.name = name;
         this.age = age;
         this.address = address;
-        this.bookLending  = new BookLendingCart();
+        this.bookLending  = new BookLendingCard();
     }
 
-    public BookLendingCart getBookLending() {
+    public BookLendingCard getBookLending() {
         return bookLending;
     }
 

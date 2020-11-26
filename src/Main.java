@@ -13,10 +13,10 @@ public class Main {
             System.out.println("--------------------------\n" +
                     "| Chào mừng đến thư viện |\n" +
                     "|          Menu          |\n" +
-                    "|1. Quản lý thư viện.    |\n" +
-                    "|2. Đăng nhập.           |\n" +
+                    "|1. Quản lý thư viện     |\n" +
+                    "|2. Đăng nhập            |\n" +
                     "|3. Đăng ký thành viên   |\n" +
-                    "|0. Thoát.               |\n" +
+                    "|0. Thoát                |\n" +
                     "--------------------------\n");
 
             System.out.print("Nhập lựa chọn: ");
@@ -53,10 +53,10 @@ public class Main {
         boolean running = true;
         while (running) {
             System.out.println("--------------------------\n" +
-                    "|         Menu           |\n" +
-                    "|1. Người lớn.           |\n" +
-                    "|2. Trẻ em.              |\n" +
-                    "|0. Exit                 |\n" +
+                    "| Menu Đăng Ký Tài Khoản |\n" +
+                    "|1. Người lớn            |\n" +
+                    "|2. Trẻ em               |\n" +
+                    "|0. Thoát                |\n" +
                     "--------------------------\n");
             System.out.print("Nhập lựa chọn: ");
             try {
@@ -91,6 +91,7 @@ public class Main {
                         //Tạo tài khoản người lớn
                         //Sử dụng đa hình
                         boolean membercheck = false;
+                        //Kiểm tra tài khoản đã tồn tại
                         for(Membership member : adultMember) {
                             if (member.getUsername().equals(username)) {
                                 membercheck = true;
@@ -140,7 +141,7 @@ public class Main {
         }
     }
 
-    //Menu quản trị
+    //Menu quản trị viên
     public static void admin_menu() {
 
         Scanner sc = new Scanner(System.in);
@@ -223,9 +224,9 @@ public class Main {
         while (running) {
             System.out.println("--------------------------\n" +
                     "|         Menu           |\n" +
-                    "|1. Người lớn.           |\n" +
-                    "|2. Trẻ em.              |\n" +
-                    "|0. Exit                 |\n" +
+                    "|1. Tài khoản người lớn  |\n" +
+                    "|2. Tài khoản trẻ em     |\n" +
+                    "|0. Thoát                |\n" +
                     "--------------------------\n");
             String account;
             System.out.print("Nhập lựa chọn: ");

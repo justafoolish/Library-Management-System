@@ -1,0 +1,14 @@
+110|	CTDL|	Mr.Sang|	45000.0|	4
+112|	Web Dev|	Mrs.Loan|	43000.0|	3
+931|	English1|	mrs|	21000.0|	2
+213|	OOP|	Mr.Đăng|	32000.0|	2
+191|	Quốc phòng an ninh|	Mr.Hùng|	31000.0|	2
+343|	Hệ điều hành|	Mr.|	32000.0|	2
+239|	C/C++|	Mr.Quốc|	21000.0|	4
+324|	Java|	Mr.Đăng|	40500.0|	2
+293|	SQL Server|	Mrs.Nhi|	43000.0|	3
+123|	Computer Networking|	Mr.Giao|	40000.0|	3
+423|	Mechine Learning|	Mr|	120000.0|	4
+329|	Blockchain|	Mrs|	37000.0|	2
+435|	Datastructures|	Mr.Bao|	23000.0|	2
+543|	Algorithm|	Mr.Bao|	34500.0|	4
